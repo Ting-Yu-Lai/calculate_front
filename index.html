@@ -14,14 +14,14 @@
 <body>
     <h2 class="px-5 mt-3">前後端分離-計算機</h2>
     <div class="px-5 mt-3">
-        <form id="myForm" method="get">
+        <form id="myForm" method="post">
             <div class="mb-3 mt-3">
                 <label for="number1" class="form-label">Num 1</label>
-                <input type="text" name="num1" class="form-control" id="number1" aria-describedby="num1">
+                <input type="text" placeholder="Enter Num1" name="num1" class="form-control" id="number1" aria-describedby="num1">
             </div>
             <div class="mb-3">
                 <label for="number2" class="form-label">Num 2</label>
-                <input type="text" name="num2" class="form-control" id="number2">
+                <input type="text" placeholder="Enter Num2" name="num2" class="form-control" id="number2">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -50,12 +50,12 @@
             console.log('formDara',formData);
             
             $.ajax({
-                type: "get",
+                type: "post",
                 url: url,
                 data: formData,
                 dataType: "json",
                 success: function (res) {
-                    console.log(res);
+                    console.log('response',res);
                 }
             })
 
