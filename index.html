@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前後端分離-計算機</title>
+    <!-- 載入bootstrap5 css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+        integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <h2 class="px-5 mt-3">前後端分離-計算機</h2>
+    <div class="px-5 mt-3">
+        <form id="myForm" method="get">
+            <div class="mb-3 mt-3">
+                <label for="number1" class="form-label">Num 1</label>
+                <input type="text" name="num1" class="form-control" id="number1" aria-describedby="num1">
+            </div>
+            <div class="mb-3">
+                <label for="number2" class="form-label">Num 2</label>
+                <input type="text" name="num2" class="form-control" id="number2">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+<!-- 載入js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- 載入bs5 js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js"
+    integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        // 1.bind
+        const myForm = $("#myForm");
+        let url = "http://localhost/calculate_back/calculate_sum_backend.php";
+        // 2.action
+        myForm.submit(function (e) {
+            // 阻擋傳送
+            e.preventDefault();
+            console.log("submit ok");
+            // 按下去之後才拿到這份data
+            let formData = myForm.serializeArray();
+            console.log('formDara',formData);
+            
+            $.ajax({
+                type: "get",
+                url: url,
+                data: formData,
+                dataType: "json",
+                success: function (res) {
+                    console.log(res);
+                }
+            })
+
+        })
+    })
+</script>
+
+</html>
